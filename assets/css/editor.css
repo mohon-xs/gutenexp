@@ -1,0 +1,100 @@
+.gutenexp-main-pricing {
+	width: 100%;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one {
+	width: 100%;
+	text-align: center;
+	background: #f4f4f5;
+	padding: 25px;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one h4 {
+	margin: 0 0 10px;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one h2 {
+	margin: 0 0 10px;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one li {
+	margin: 0 0 5px;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one a {
+	display: inline-block;
+	padding: 10px 20px;
+	margin-top: 10px;
+	color: #fff !important;
+	border: 3px solid transparent;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one a:hover {
+	border: 2px solid #fff;
+}
+
+.block-editor-writing-flow .gutenexp-pricing-one a:focus {
+	border: none !important;
+	outline: none !important;
+}
+
+.block-editor-writing-flow .components-button {
+	margin: 0 auto 10px !important;
+}
+
+.block-editor-inner-blocks ul {
+	margin: 0 auto !important;
+	width: 230px !important;
+}
+
+.block-editor-inner-blocks ul li {
+	text-align: left !important;
+}
+
+.block-editor-block-list__block .gutenexpSlider {
+	background-color: #ddd;
+	width: 610px;
+	height: 350px;
+}
+
+.block-editor-block-list__block .card-block {
+	width: 610px;
+	height: 350px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #ddd;
+	text-align: center;
+	color: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+}
+
+.block-editor-block-list__block .card-block .components-button {
+	width: 92px;
+	height: 30px;
+	background: #fff;
+	font-size: 14px;
+}
+
+.block-editor-block-list__block .card-block .components-button span {
+	font-size: 15px;
+	margin: 5px 5px 0px 0px;
+}
+
+.block-editor-block-list__block .card-block a {
+	display: inline-block;
+}
