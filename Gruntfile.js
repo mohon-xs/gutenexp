@@ -371,7 +371,7 @@ module.exports = function (grunt) {
 
 	// Load all Grunt library tasks
     require('jit-grunt')(grunt, {
-		postcss: 'grunt-postcss'
+		postcss: '@lodder/grunt-postcss'
 	});
 
 	// Loading modules that are not autoloaded by jit-grant
