@@ -553,7 +553,7 @@ var components_experiments_blockWarper = {
       onChange: function onChange(value) {
         return changeHandler('color', value);
       }
-    }), /*#__PURE__*/React.createElement(SeparateView, null, /*#__PURE__*/React.createElement(components_experiments_PanelBody, {
+    }), /*#__PURE__*/React.createElement(Repeater, null, /*#__PURE__*/React.createElement(components_experiments_PanelBody, {
       title: "Child"
     }, /*#__PURE__*/React.createElement("p", null, "the following controls are auto generated"), Object.entries(config.attributes).map(function (_ref) {
       var _ref2 = components_experiments_slicedToArray(_ref, 2),
@@ -585,9 +585,9 @@ var components_experiments_blockWarper = {
 }; // this is an example component of parent child system
 // this concept can be used to create multi-repeater, pop-over  and group-based controls.
 
-var SeparateView = function SeparateView(_ref3) {
+var Repeater = function Repeater(_ref3) {
   var children = _ref3.children;
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "warper begins"), children, /*#__PURE__*/React.createElement("p", null, "warper ends"));
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "warper begins"), children, children, /*#__PURE__*/React.createElement("p", null, "warper ends"));
 };
 
 var components_experiments_Style = function Style(_ref4) {

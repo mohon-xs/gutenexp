@@ -117,4 +117,4 @@ const Style = function ({viewport, children}){
     )
 }
 
-export {blockWarper, SeparateView, Style}
+export {blockWarper, Style}
