@@ -1,8 +1,7 @@
-const {InspectorControls, useBlockProps} = wp.blockEditor;
+const {InspectorControls} = wp.blockEditor;
 const {PanelBody} = wp.components;
 const {registerBlockType} = wp.blocks;
-
-import {Repeater} from './repeater';
+const {useBlockProps} = wp.blockEditor;
 
 const blockWarper = {
     PanelControls: function(props, config){
@@ -30,10 +29,7 @@ const blockWarper = {
                                 // dynamic load. 
                                 // need to check properly if the control exists
                                 // from wp.components or wp.blockEditor
-                                // let Component = wp.components[attribute.control.field];
-                                let Component = (attribute.control.props.childAttributes) 
-                                    ? Repeater
-                                    : wp.components[attribute.control.field];
+                                let Component = wp.components[attribute.control.field]
 
                                 return ([
                                     <p key={ index + '-label' } ><strong>
@@ -85,19 +81,6 @@ const Style = function ({viewport, children}){
         </style>
     )
 }
-
-// this is an example component of parent child system
-// this concept can be used to create multi-repeater, pop-over  and group-based controls.
-const Container = function({children}){ 
-    return(
-        <div>
-            <p>warper begins</p>
-             {children}
-            <p>warper ends</p>
-        </div>
-    )
-}
-
 
 const blockInit = function(config, View, Styles){
 

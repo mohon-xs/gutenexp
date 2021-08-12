@@ -38,40 +38,6 @@ const config = {
             type: 'string',
             default: 'some text'
         },
-        repeater:{
-            control:{
-                field: 'Repeater',
-                label: 'Repeater Label - autocontrol',
-                props: {
-                    childAttributes: {
-                        text1:{ 
-                            control:{
-                                field: 'TextControl',
-                                label: 'Text 1 Label',
-                                props: {
-                                    placeholder: 'enter your text ....',
-                                }
-                            },
-                            type: 'string',
-                            default: 'some text'
-                        },
-                        text2:{
-                            control:{
-                                field: 'TextControl',
-                                label: 'Text 2 Label',
-                                props: {
-                                    placeholder: 'enter your text ....',
-                                }
-                            },
-                            type: 'string',
-                            default: 'some text'
-                        },
-                    },
-                }
-            },
-            type: 'string',
-            default: []
-        },
     },
 }
 

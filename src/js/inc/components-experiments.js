@@ -37,7 +37,7 @@ const blockWarper = {
                         onChange={ ( value ) => changeHandler('color', value ) }
                     />
 
-                    <Container>
+                    <Repeater>
                         <PanelBody title="Child">
                             <p>the following controls are auto generated</p>
                             {
@@ -70,7 +70,7 @@ const blockWarper = {
                                 })
                             }
                         </PanelBody>
-                    </Container>
+                    </Repeater>
 
                 </PanelBody>
             </InspectorControls>
@@ -80,12 +80,13 @@ const blockWarper = {
 
 // this is an example component of parent child system
 // this concept can be used to create multi-repeater, pop-over  and group-based controls.
-const Container = function({children}){ 
-    let Child = children;
+const Repeater = function({children}){
+
     return(
         <div>
             <p>warper begins</p>
-             {Child}
+            { children }
+            { children }
             <p>warper ends</p>
         </div>
     )
@@ -116,4 +117,4 @@ const Style = function ({viewport, children}){
     )
 }
 
-export {blockWarper, Container, Style}
+export {blockWarper, SeparateView, Style}

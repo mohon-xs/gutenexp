@@ -2,7 +2,7 @@ const {registerBlockType} = wp.blocks;
 const {useBlockProps} = wp.blockEditor;
 const {Component, render} = wp.element; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
 
-import {blockWarper, Container, Style} from '../inc/components-experiments';
+import {blockWarper, SeparateView, Style} from '../inc/components-experiments';
 
 const config = {
     name: 'gutenexp/test-experiments',
