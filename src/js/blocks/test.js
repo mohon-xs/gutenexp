@@ -1,6 +1,7 @@
 const {Component, render} = wp.element; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
+const { useSelect, useDispatch } = wp.data
 
-import {blockWarper, blockInit, Style} from '../inc/components';
+import {blockInit, Style} from '../inc/components';
 
 const config = {
     name: 'gutenexp/test',
@@ -43,6 +44,24 @@ const config = {
 
 
 const View = function({attributes}){
+    // const { setPreviewDeviceType } = useDispatch( 'core/edit-post' )
+    const { __experimentalSetPreviewDeviceType : setPreviewDeviceType } = useDispatch( 'core/edit-post' )
+
+
+    const { deviceType } = useSelect( select => {
+        const { __experimentalGetPreviewDeviceType } = select( 'core/edit-post' );
+    
+        return {
+            deviceType: __experimentalGetPreviewDeviceType(),
+        }
+    }, [] );
+
+    setTimeout(() => {
+        setPreviewDeviceType('Mobile')
+    }, 5000);
+
+    console.log(deviceType)
+    console.log(typeof __experimentalSetPreviewDeviceType)
     return(
         <div>
             <p>
