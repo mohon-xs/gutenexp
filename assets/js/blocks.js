@@ -1,8 +1,81 @@
 /******/ (function() { // webpackBootstrap
-/******/ 	"use strict";
-var __webpack_exports__ = {};
+/******/ 	var __webpack_modules__ = ({
 
-;// CONCATENATED MODULE: ./src/js/inc/components.js
+/***/ 4:
+/***/ (function() {
+
+var _wp$element = wp.element,
+    Component = _wp$element.Component,
+    render = _wp$element.render; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
+
+var _wp$data = wp.data,
+    useSelect = _wp$data.useSelect,
+    useDispatch = _wp$data.useDispatch;
+var TabPanel = wp.components.TabPanel;
+var _gbLibrary = gbLibrary,
+    blockWarper = _gbLibrary.blockWarper,
+    blockInit = _gbLibrary.blockInit,
+    Style = _gbLibrary.Style;
+var config = {
+  name: 'gutenexp/control-test',
+  apiVersion: 2,
+  title: 'Control Test',
+  icon: 'universal-access-alt',
+  category: 'design',
+  attributes: {
+    blockId: {
+      type: 'string'
+    },
+    // test:{
+    //     control:{
+    //         field: '__experimentalAlignmentMatrixControl',
+    //         label: 'Test Label - autocontrol',
+    //         props: {
+    //             width: '50px',
+    //             haga: 'poop'
+    //         }
+    //     },
+    //     type: {},
+    //     default: {}
+    // },
+    test: {
+      control: {
+        field: 'TextControl',
+        label: 'Test Label - autocontrol',
+        help: 'test help',
+        props: {
+          placeholder: 'some placeholder ....'
+        }
+      },
+      type: {},
+      "default": {
+        "default": 'default value',
+        mobile: 'mobile value'
+      }
+    }
+  }
+};
+
+var View = function View(_ref) {
+  var attributes = _ref.attributes,
+      deviceType = _ref.deviceType;
+  // console.clear()
+  console.log(attributes);
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "see console for attribute's value. deviceType: ", deviceType), /*#__PURE__*/React.createElement("p", null, "blockId: ", attributes.blockId));
+};
+
+var Styles = function Styles(_ref2) {
+  var attributes = _ref2.attributes;
+  return null;
+};
+
+blockInit(config, View, Styles);
+
+/***/ }),
+
+/***/ 132:
+/***/ (function() {
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -23,15 +96,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var InspectorControls = wp.blockEditor.InspectorControls;
-var PanelBody = wp.components.PanelBody;
+var _wp$blockEditor = wp.blockEditor,
+    InspectorControls = _wp$blockEditor.InspectorControls,
+    useBlockProps = _wp$blockEditor.useBlockProps;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    TabPanel = _wp$components.TabPanel,
+    BaseControl = _wp$components.BaseControl;
 var registerBlockType = wp.blocks.registerBlockType;
-var useBlockProps = wp.blockEditor.useBlockProps;
+var _wp$data = wp.data,
+    useSelect = _wp$data.useSelect,
+    useDispatch = _wp$data.useDispatch;
 var blockWarper = {
   PanelControls: function PanelControls(props, config) {
     var attributes = props.attributes,
         setAttributes = props.setAttributes,
         clientId = props.clientId;
+
+    var _useDispatch = useDispatch('core/edit-post'),
+        setPreviewDeviceType = _useDispatch.__experimentalSetPreviewDeviceType;
+
     var blockId = attributes.blockId;
 
     if (!blockId) {
@@ -40,19 +124,48 @@ var blockWarper = {
       });
     }
 
-    function changeHandler(name, value) {
+    function changeHandler(name, oldValue, newValue, viewport) {
+      viewport = viewport || 'default';
+      var value = {
+        "default": oldValue["default"] || null,
+        tablet: oldValue.tablet || null,
+        mobile: oldValue.mobile || null
+      };
+      value[viewport] = newValue;
       console.log({
         name: name,
+        oldValue: oldValue,
+        newValue: newValue,
+        viewport: viewport,
         value: value
       });
       setAttributes(_defineProperty({}, name, value));
     }
 
+    var onSelect = function onSelect(tabName) {
+      console.log('Selecting tab', tabName);
+    };
+
     return /*#__PURE__*/React.createElement(InspectorControls, {
       style: {
         marginBottom: '40px'
       }
-    }, /*#__PURE__*/React.createElement(PanelBody, {
+    }, /*#__PURE__*/React.createElement(TabPanel, {
+      className: "my-tab-panel",
+      activeClass: "active-tab",
+      onSelect: onSelect,
+      tabs: [{
+        name: 'tab1',
+        title: 'Tab 1',
+        className: 'tab-one'
+      }, {
+        name: 'tab2',
+        title: 'Tab 2',
+        className: 'tab-two'
+      }]
+    }, function (tab) {
+      return /*#__PURE__*/React.createElement("p", null, tab.title, " ok");
+    }), /*#__PURE__*/React.createElement(PanelBody, {
       title: "Change Box Margin & Padding"
     }, /*#__PURE__*/React.createElement("p", null, "the following controls are auto generated"), Object.entries(config.attributes).map(function (_ref) {
       var _ref2 = _slicedToArray(_ref, 2),
@@ -60,24 +173,50 @@ var blockWarper = {
           attribute = _ref2[1];
 
       if (attribute.control && attribute.control.field) {
-        // dynamic load. 
-        // need to check properly if the control exists
-        // from wp.components or wp.blockEditor
         var Component = wp.components[attribute.control.field];
-        return [/*#__PURE__*/React.createElement("p", {
-          key: index + '-label'
-        }, /*#__PURE__*/React.createElement("strong", null, attribute.control.label)), /*#__PURE__*/React.createElement(Component, _extends({
+        var controlId = attribute.control.field + index + attributes.blockId;
+        return /*#__PURE__*/React.createElement(BaseControl, {
           key: index,
+          id: controlId,
+          label: attribute.control.label,
+          help: attribute.control.help
+        }, /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("button", {
+          key: controlId + 'rs-default',
+          onClick: function onClick() {
+            setPreviewDeviceType('Desktop');
+          }
+        }, "default"), /*#__PURE__*/React.createElement("button", {
+          key: controlId + 'rs-tablet',
+          onClick: function onClick() {
+            setPreviewDeviceType('Tablet');
+          }
+        }, "tablet"), /*#__PURE__*/React.createElement("button", {
+          key: controlId + 'rs-mobile',
+          onClick: function onClick() {
+            setPreviewDeviceType('Mobile');
+          }
+        }, "mobile")), /*#__PURE__*/React.createElement(Component, _extends({
+          key: index + 'default',
+          id: controlId,
           onChange: function onChange(value) {
-            return changeHandler(index, value);
-          } // for some controls, they need this event
-          // later we will put this on condition, may be
-          ,
-          onChangeComplete: function onChangeComplete(value) {
-            return changeHandler(index, value);
+            changeHandler(index, attributes[index], value);
           },
-          value: attributes[index] || ''
-        }, attribute.control.props))];
+          value: attributes[index]["default"] || ''
+        }, attribute.control.props)), /*#__PURE__*/React.createElement(Component, _extends({
+          key: index + 'tablet',
+          id: controlId,
+          onChange: function onChange(value) {
+            changeHandler(index, attributes[index], value, 'tablet');
+          },
+          value: attributes[index].tablet || ''
+        }, attribute.control.props)), /*#__PURE__*/React.createElement(Component, _extends({
+          key: index + 'mobile',
+          id: controlId,
+          onChange: function onChange(value) {
+            changeHandler(index, attributes[index], value, 'mobile');
+          },
+          value: attributes[index].mobile || ''
+        }, attribute.control.props)));
       }
     })));
   }
@@ -109,7 +248,19 @@ var Style = function Style(_ref3) {
 var blockInit = function blockInit(config, View, Styles) {
   registerBlockType(config.name, _objectSpread(_objectSpread({}, config), {}, {
     edit: function edit(props) {
+      // only CSS/ Style section will receive this value in editor view. currently it's in testing phase.
+      var _useSelect = useSelect(function (select) {
+        var _select = select('core/edit-post'),
+            __experimentalGetPreviewDeviceType = _select.__experimentalGetPreviewDeviceType;
+
+        return {
+          deviceType: __experimentalGetPreviewDeviceType()
+        };
+      }, []),
+          deviceType = _useSelect.deviceType;
+
       return [/*#__PURE__*/React.createElement(Styles, {
+        deviceType: deviceType,
         key: "styles",
         attributes: props.attributes
       }), /*#__PURE__*/React.createElement("div", {
@@ -119,11 +270,14 @@ var blockInit = function blockInit(config, View, Styles) {
       }, useBlockProps({
         className: props.attributes.blockId
       })), /*#__PURE__*/React.createElement(View, {
+        deviceType: deviceType,
         attributes: props.attributes
       }))];
     },
     save: function save(props) {
+      var deviceType = 'Desktop';
       return [/*#__PURE__*/React.createElement(Styles, {
+        deviceType: deviceType,
         key: "styles",
         attributes: props.attributes
       }), /*#__PURE__*/React.createElement("div", _extends({
@@ -131,82 +285,92 @@ var blockInit = function blockInit(config, View, Styles) {
       }, useBlockProps.save({
         className: props.attributes.blockId
       })), /*#__PURE__*/React.createElement(View, {
+        deviceType: deviceType,
         attributes: props.attributes
       }))];
     }
   }));
 };
 
+if ('undefined' === typeof window.gbLibrary) {
+  window.gbLibrary = {};
+}
 
-;// CONCATENATED MODULE: ./src/js/blocks/control-test.js
-var _wp$element = wp.element,
-    Component = _wp$element.Component,
-    render = _wp$element.render; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
+gbLibrary.blockWarper = blockWarper;
+gbLibrary.Style = Style;
+gbLibrary.blockInit = blockInit; // export {blockWarper, Style, blockInit}
 
-var _wp$data = wp.data,
-    useSelect = _wp$data.useSelect,
-    useDispatch = _wp$data.useDispatch;
+/***/ })
 
-var config = {
-  name: 'gutenexp/control-test',
-  apiVersion: 2,
-  title: 'Control Test',
-  icon: 'universal-access-alt',
-  category: 'design',
-  attributes: {
-    blockId: {
-      type: 'string'
-    },
-    color: {
-      control: {
-        field: 'ColorPalette',
-        label: 'Color Label - autocontrol',
-        props: {
-          colors: [{
-            name: 'red',
-            color: '#f00'
-          }, {
-            name: 'white',
-            color: '#fff'
-          }, {
-            name: 'blue',
-            color: '#00f'
-          }]
-        }
-      },
-      type: 'string',
-      "default": '#dfb'
-    },
-    text: {
-      control: {
-        field: 'TextControl',
-        label: 'Text Label - autocontrol',
-        props: {
-          placeholder: 'enter your text ....'
-        }
-      },
-      type: 'string',
-      "default": 'some text'
-    }
-  }
-};
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+!function() {
+"use strict";
+/* harmony import */ var _inc_components_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(132);
+/* harmony import */ var _inc_components_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inc_components_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _blocks_control_test_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
+/* harmony import */ var _blocks_control_test_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_blocks_control_test_js__WEBPACK_IMPORTED_MODULE_1__);
 
-var View = function View(_ref) {
-  var attributes = _ref.attributes;
-  console.clear();
-  console.log(attributes);
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "blockId: ", attributes.blockId));
-};
-
-var Styles = function Styles(_ref2) {
-  var attributes = _ref2.attributes;
-  return null;
-};
-
-blockInit(config, View, Styles);
-;// CONCATENATED MODULE: ./src/js/blocks.js
  // import './blocks/test.js';
 // import './blocks/test-experiments.js';
 // import './blocks/pricing.js';
+}();
 /******/ })()
 ;

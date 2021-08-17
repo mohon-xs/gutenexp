@@ -1,7 +1,7 @@
 const {Component, render} = wp.element; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
 const { useSelect, useDispatch } = wp.data
 
-import {blockInit, Style} from '../inc/components';
+import {blockWarper, blockInit, Style} from '../inc/components';
 
 const config = {
     name: 'gutenexp/test',
@@ -61,7 +61,7 @@ const View = function({attributes}){
     }, 5000);
 
     console.log(deviceType)
-    console.log(typeof __experimentalSetPreviewDeviceType)
+    console.log(typeof setPreviewDeviceType)
     return(
         <div>
             <p>

@@ -1,7 +1,7 @@
-const {Component, render} = wp.element; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
+const { Component, render } = wp.element; //https://wordpress.org/support/topic/reactjs-in-wpwp-elemet/
 const { useSelect, useDispatch } = wp.data
-
-import {blockWarper, blockInit, Style} from '../inc/components';
+const { TabPanel } = wp.components
+const { blockWarper, blockInit, Style } = gbLibrary
 
 const config = {
     name: 'gutenexp/control-test',
@@ -13,42 +13,48 @@ const config = {
         blockId: {
             type: 'string',
         },
-        color:{
-            control:{
-                field: 'ColorPalette',
-                label: 'Color Label - autocontrol',
-                props: {
-                    colors: [
-                        { name: 'red', color: '#f00' },
-                        { name: 'white', color: '#fff' },
-                        { name: 'blue', color: '#00f' },
-                    ]
-                }
-            },
-            type: 'string',
-            default: '#dfb'
-        },
-        text:{
+        // test:{
+        //     control:{
+        //         field: '__experimentalAlignmentMatrixControl',
+        //         label: 'Test Label - autocontrol',
+        //         props: {
+        //             width: '50px',
+        //             haga: 'poop'
+        //         }
+        //     },
+        //     type: {},
+        //     default: {}
+        // },
+        test:{
             control:{
                 field: 'TextControl',
-                label: 'Text Label - autocontrol',
+                label: 'Test Label - autocontrol',
+                help: 'test help',
                 props: {
-                    placeholder: 'enter your text ....',
+                    placeholder: 'some placeholder ....',
                 }
             },
-            type: 'string',
-            default: 'some text'
+            type: {},
+            default: {
+                default: 'default value',
+                mobile: 'mobile value',
+            }
         },
     },
 }
 
 
-const View = function({attributes}){
+const View = function({attributes, deviceType}){
 
-    console.clear()
+
+    // console.clear()
     console.log(attributes)
     return(
         <div>
+
+            <p>
+                see console for attribute's value. deviceType: {deviceType}
+            </p>
             <p>
                 blockId: {attributes.blockId}
             </p>
